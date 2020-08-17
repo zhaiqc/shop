@@ -7,6 +7,8 @@ import 'package:shop/root/vip/VipPage.dart';
 import 'package:shop/utils/AppConfig.dart';
 import 'package:shop/utils/NavigationView.dart';
 
+import '../utils/AppConfig.dart';
+
 class RootPage extends StatefulWidget {
   int currentIndex;
 
@@ -19,40 +21,18 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
   List<NavigationView> _navigationViews =[];
   StatefulWidget _currentPage;
   List<StatefulWidget> _pageList;
-@override
+  int currentIndex = 0;
+  final  pages = [
+  HomePage(),
+//  HomePage(),
+//  VipPage(),
+  MyPage(),
+
+  ];
+
+  @override
   void initState() {
-  var home =HomePage();
-  var vip =VipPage();
-  var my =MyPage();
-  _navigationViews = <NavigationView>[
-    new NavigationView(
-      icon: Icons.home,
-      title: "首页",
-      vsync: this,
-    ),
 
-    new NavigationView(
-      icon: Icons.local_activity,
-      title: "会员",
-      vsync: this,
-    ),
-    new NavigationView(
-      icon: Icons.picture_in_picture_alt,
-      title: "我的",
-      vsync: this,
-    ),
-
-  ];
-
-  for (NavigationView view in _navigationViews) {
-    view.controller.addListener(_rebuild);
-  }
-
-  _pageList = <StatefulWidget>[
-    home,
-    vip,my
-  ];
-  _currentPage = _pageList[widget.currentIndex];
   // TODO: implement initState
     super.initState();
   }
@@ -62,34 +42,123 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,width: 750, height: 1334);
-    final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
-      items: _navigationViews
-          .map((NavigationView navigationView) => navigationView.item)
-          .toList(),
+    final BottomAppBar bottomAppBar = new BottomAppBar(
+      shape: CircularNotchedRectangle(),
 
-      currentIndex: widget.currentIndex,
-      fixedColor: Colors.red,
-      type: BottomNavigationBarType.fixed,
-      onTap: (int index) {
-        setState(() {
-          _navigationViews[widget.currentIndex].controller.reverse();
-          widget.currentIndex = index;
-          _navigationViews[widget.currentIndex].controller.forward();
-          _currentPage = _pageList[widget.currentIndex];
-        });
-      },
+//      items: _navigationViews.map((NavigationView navigationView) => navigationView.item).toList(),
+//      currentIndex: widget.currentIndex,
+//      fixedColor: Colors.red,
+//      type: BottomNavigationBarType.fixed,
+//      onTap: (int index) {
+//        setState(() {
+//          _navigationViews[widget.currentIndex].controller.reverse();
+//          widget.currentIndex = index;
+//          _navigationViews[widget.currentIndex].controller.forward();
+//          _currentPage = _pageList[widget.currentIndex];
+//        });
+//      },
     );
 
     return      new MaterialApp(
         theme: AppConfig.defaultTheme,
-        home: new Scaffold(
-          body: new Center(
-            child:  _currentPage,
+        home: buildBottomTabScaffold());
+  }
 
-
+  Widget buildBottomTabScaffold() {
+    return SizedBox(
+        height: 100,
+        child: Scaffold(
+          //对应的页面
+          body: pages[currentIndex],
+          //appBar: AppBar(title: const Text('Bottom App Bar')),
+          //悬浮按钮的位置
+          floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerDocked,
+          //悬浮按钮
+          floatingActionButton: FloatingActionButton(
+            hoverColor: Colors.red,
+            backgroundColor: Colors.red,
+            child: const Icon(Icons.add),
+            onPressed: () {
+              print("add press ");
+              AppConfig.toast(context, "功能暂未开放");
+            },
           ),
-          bottomNavigationBar: bottomNavigationBar,
-
+          //其他菜单栏
+          bottomNavigationBar: BottomAppBar(
+            //悬浮按钮 与其他菜单栏的结合方式
+            shape: CircularNotchedRectangle(),
+            notchMargin: 6.0,
+            color: Colors.red, //底部工具栏的颜色。
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                buildBottomItem(currentIndex, 0, Icons.home, "首页"),
+//                buildBottomItem(currentIndex, 1, Icons.library_music, "发现"),
+//                buildBottomItem(currentIndex, -1, null, "发现"),
+//                buildBottomItem(currentIndex, 2, Icons.email, "消息"),
+                buildBottomItem(currentIndex, 1, Icons.person, "我的"),
+              ],
+            ),
+          ),
         ));
   }
+  buildBottomItem(int selectIndex, int index, IconData iconData, String title) {
+    //未选中状态的样式
+    TextStyle textStyle = TextStyle(fontSize: 12.0,color: Colors.white);
+    MaterialColor iconColor = Colors.grey;
+    double iconSize=20;
+    EdgeInsetsGeometry padding =  EdgeInsets.only(top: 8.0);
+
+    if(selectIndex==index){
+      //选中状态的文字样式
+      textStyle = TextStyle(fontSize: 13.0,color: Colors.white);
+      //选中状态的按钮样式
+      iconSize=25;
+      padding =  EdgeInsets.only(top: 6.0);
+    }
+    Widget padItem = SizedBox();
+    if (iconData != null) {
+      padItem = Padding(
+        padding: padding,
+        child: Container(
+          color: Colors.red, //底部工具栏的颜色。
+            child: Center(
+            child: Column(
+              children: <Widget>[
+                Icon(
+                  iconData,
+                  color: Colors.white,
+                  size: iconSize,
+                ),
+                Text(
+                  title,
+                  style: textStyle,
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+    Widget item = Expanded(
+      flex: 1,
+      child: new GestureDetector(
+        onTap: () {
+          if (index != currentIndex) {
+            setState(() {
+              currentIndex = index;
+            });
+          }
+        },
+        child: SizedBox(
+          height: 52,
+          child: padItem,
+        ),
+      ),
+    );
+    return item;
+  }
 }
+

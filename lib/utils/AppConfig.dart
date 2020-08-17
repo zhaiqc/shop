@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:toast/toast.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
@@ -117,11 +118,11 @@ class AppConfig{
               new Expanded(child: new Container()),
               new Container(
                 padding:  EdgeInsets.only(right: 5.0),
-                child: new Icon(Icons.search,size: AppConfig.font_bigSize,color: AppConfig.fontDarkColor,),
+                child: new Icon(Icons.search,size: AppConfig.font_bigSize,color:Colors.white,),
               ),
               new Container(
                 //
-                child: new Text("输入搜索关键词",style: AppConfig.normalTextStyle(AppConfig.fontDarkColor, AppConfig.font_bigSize),),
+                child: new Text("输入搜索关键词",style: AppConfig.normalTextStyle(Colors.white, AppConfig.font_bigSize),),
               ),
               new Expanded(child: new Container()),
             ],
@@ -139,6 +140,12 @@ class AppConfig{
 
 
     );
+  }
+
+
+  static toast(context,msg){
+    Toast.show(msg, context, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
+
   }
 
 
