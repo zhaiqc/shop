@@ -6,10 +6,6 @@ import 'package:shop/utils/AppConfig.dart';
 import '../../utils/AppConfig.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import '../../utils/AppConfig.dart';
-import '../../utils/AppConfig.dart';
-import '../../utils/AppConfig.dart';
-import '../../utils/AppConfig.dart';
 
 
 
