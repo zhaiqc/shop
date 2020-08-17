@@ -14,7 +14,7 @@ class AppConfig{
   static ThemeData defaultTheme = new ThemeData.light();
   static String AppTitle ="demo";
   static Color color_null = Colors.white.withOpacity(0.0);
-  static Color fontDarkColor = Colors.white70;//字体暗色
+  static Color fontDarkColor = Colors.black;//字体暗色
   static Color otherColor = Colors.red;
   static Color fontColor = Colors.white;//字体颜色
 
