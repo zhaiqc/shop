@@ -13,7 +13,7 @@ class AppConfig{
 
   AppConfig._internal();
   static ThemeData defaultTheme = new ThemeData.light();
-  static String AppTitle ="demo";
+  static String AppTitle ="商城";
   static Color color_null = Colors.white.withOpacity(0.0);
   static Color fontDarkColor = Colors.black;//字体暗色
   static Color otherColor = Colors.red;

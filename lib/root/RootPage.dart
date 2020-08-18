@@ -45,18 +45,6 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
     final BottomAppBar bottomAppBar = new BottomAppBar(
       shape: CircularNotchedRectangle(),
 
-//      items: _navigationViews.map((NavigationView navigationView) => navigationView.item).toList(),
-//      currentIndex: widget.currentIndex,
-//      fixedColor: Colors.red,
-//      type: BottomNavigationBarType.fixed,
-//      onTap: (int index) {
-//        setState(() {
-//          _navigationViews[widget.currentIndex].controller.reverse();
-//          widget.currentIndex = index;
-//          _navigationViews[widget.currentIndex].controller.forward();
-//          _currentPage = _pageList[widget.currentIndex];
-//        });
-//      },
     );
 
     return      new MaterialApp(
@@ -95,9 +83,6 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 buildBottomItem(currentIndex, 0, Icons.home, "首页"),
-//                buildBottomItem(currentIndex, 1, Icons.library_music, "发现"),
-//                buildBottomItem(currentIndex, -1, null, "发现"),
-//                buildBottomItem(currentIndex, 2, Icons.email, "消息"),
                 buildBottomItem(currentIndex, 1, Icons.person, "我的"),
               ],
             ),

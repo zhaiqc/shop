@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shop/root/detail/DetailPage.dart';
+import 'package:shop/utils/AlertView.dart';
 import 'package:shop/utils/AppConfig.dart';
 
 import '../../utils/AppConfig.dart';
@@ -18,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppConfig.build_appBar(context, () {}),
+//      appBar: AppConfig.build_appBar(context, () {}),
       body: CustomScrollView(
         slivers: [
           ///banner
@@ -142,25 +144,26 @@ class _HomePageState extends State<HomePage> {
                               height: AppConfig.logic_width(150),child:
                             Column(children: [
                               Container(
-
+                                height: AppConfig.logic_width(100),
                                 width: AppConfig.logic_width(400),
                                 padding: EdgeInsets.all(5),
                                 child: Text( "悉尼5天带娃亲子游~一起看世界吧........",   softWrap: true,
-                                  maxLines: 3,style: TextStyle(fontSize: AppConfig.logic_fontSize(20)),),),
+                                  maxLines: 3,style: TextStyle(fontSize: AppConfig.logic_fontSize(25)),),),
 
 
                               Container(child: Row(children: [
                                    new ClipOval(
                                   child: new Image.network(
                                     "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
-                                    width: AppConfig.logic_width(40),
+                                    width: AppConfig.logic_width(30),
                                   ),
                                 ),
-                                Container(child: Text("小小源码",style: TextStyle(fontSize: AppConfig.logic_width(5)),),),
-                                Container(width: AppConfig.logic_width(90),),
+                                Container(child: Text("小小源码",style: TextStyle(fontSize: AppConfig.logic_fontSize(25)),),),
+//                                Expanded(child: Container()),
+                                Container(width: AppConfig.logic_width(150),),
 
-                                Container(child:Icon(Icons.favorite_border),),
-                                Container(margin:EdgeInsets.only(right: AppConfig.logic_width(15)),child: Text("1060",style: TextStyle(fontSize: AppConfig.logic_width(5)),),)
+                                Container(child:Icon(Icons.favorite_border,size: AppConfig.logic_fontSize(25),),),
+                                Container(margin:EdgeInsets.only(right: AppConfig.logic_fontSize(18)),child: Text("1060",style: TextStyle(fontSize: AppConfig.logic_fontSize(25)),),)
 
                               ],),)
                             ],),),
@@ -340,10 +343,45 @@ class _HomePageState extends State<HomePage> {
                             child: Text(
                               "有效期至2020.12.31",
                               style: TextStyle(
-                                  fontSize: AppConfig.logic_width(30),
+                                  fontSize: AppConfig.logic_width(25),
                                   color: Colors.grey),
                             ),
                           )),
+                          Expanded(
+                              child: Container(
+                                width: double.infinity,
+                                child:Row(children: [
+                                  Text(
+                                    "￥399",
+                                    style: TextStyle(
+                                        fontSize: AppConfig.logic_width(30),
+                                        color: Colors.red),
+                                  ),
+                                  Text(
+                                    "￥499",
+                                    style: TextStyle(
+                                        fontSize: AppConfig.logic_width(25),
+                                        color: Colors.grey,decoration: TextDecoration.lineThrough),
+                                  ),
+                                  Expanded(child: Container()),
+                                  Container(
+                                    alignment:Alignment.center ,
+                                    child: Text("马上抢",style: TextStyle(color: Colors.white,fontSize: AppConfig.logic_fontSize(20)),),
+
+                                    decoration: new BoxDecoration(
+                                      //背景
+                                    color: Colors.red,
+                                      //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
+                                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                                      //设置四周边框
+//                              border: new Border.all(width: 1, color: Colors.red),
+                                    ),
+                                    height: AppConfig.logic_height(50),
+                                    margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                    width: AppConfig.logic_width(90),)
+
+                                ],)
+                              )),
                         ],
                       ),
                     ),
@@ -406,6 +444,14 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context)=>new AlertView(onTap: (){
+            Navigator.push(context, new MaterialPageRoute(builder: (_) => new DetailPage()));
+
+          },),
+        );
 //          showDialog(
 //            context: context,
 //            barrierDismissible: true,
