@@ -36,6 +36,9 @@ dependencies:
   toast: ^0.1.5
   flutter_staggered_grid_view: ^0.3.2
   video_player: ^0.10.11+2
+  flutter_widget_from_html_core: ^0.4.3
+
+
 
 dev_dependencies:
   flutter_test:

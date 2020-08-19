@@ -29,15 +29,18 @@ class _AlertViewState extends State<AlertView> {
   @override
   Widget build(BuildContext context) {
     return new Container(
+
       child: new Column(
         children: <Widget>[
           new Expanded(child: new Container()),
           new Container(
+
             width: AppConfig.logic_width(700.0),
             child: new Column(
               children: <Widget>[
                 Material(
                   child: new Container(
+
                     margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                     height: AppConfig.logic_width(150),
                     child: Row(
@@ -49,6 +52,8 @@ class _AlertViewState extends State<AlertView> {
                         Expanded(
                             flex: 3,
                             child: Container(
+
+
                               child: Column(
                                 children: [
                                   Expanded(
@@ -234,7 +239,7 @@ class _AlertViewState extends State<AlertView> {
             ),
             decoration: new BoxDecoration(
               color: Colors.white,
-              borderRadius: new BorderRadius.all(const Radius.circular(10.0)),
+              borderRadius: new BorderRadius.all( Radius.circular(10.0)),
             ),
           ),
           new Expanded(child: new Container()),
