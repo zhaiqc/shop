@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker_web/file_picker_web.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -9,6 +12,7 @@ import 'package:shop/utils/NavigationView.dart';
 import 'package:shop/utils/provider/ViewModelProvider.dart';
 
 import '../utils/AppConfig.dart';
+import 'article/ArticlePage.dart';
 import 'home/HomeViewModel.dart';
 
 class RootPage extends StatefulWidget {
@@ -71,7 +75,12 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
             child: const Icon(Icons.add),
             onPressed: () {
               print("add press ");
-              AppConfig.toast(context, "功能暂未开放");
+//              _pickFiles();
+//               FilePicker.getFile(
+//                  allowedExtensions: ['mp4', 'png']);
+              Navigator.push(context, new MaterialPageRoute(builder: (_) => new ArticlePage()));
+
+//              AppConfig.toast(context, "功能暂未开放");
             },
           ),
           //其他菜单栏
@@ -147,5 +156,16 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
     );
     return item;
   }
+
+  List<File> _files = [];
+
+  void _pickFiles() async {
+//    var _image = await FlutterWebImagePicker.getImage;
+//    print(_image);
+
+//    _files = await FilePicker.getMultiFile() ?? [];
+//    setState(() {});
+  }
+
 }
 

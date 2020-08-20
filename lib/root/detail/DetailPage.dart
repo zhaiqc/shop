@@ -27,10 +27,9 @@ List<Widget> tags =new List();
   @override
   void initState() {
     widget.entity.data.manystoretaps.forEach((element) {
-        tags.add(      Container(
+        tags.add( Container(
           alignment: Alignment.center,
-          child: Text(
-            "${element.name}",
+          child: Text("${element.name}",
             textAlign: TextAlign.right,
             style: TextStyle(
                 color: Colors.red,
@@ -841,7 +840,21 @@ List<Widget> tags =new List();
             ],
             mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
           ),
-        ));
+        ),
+        floatingActionButton:FloatingActionButton(onPressed: (){
+
+        }, tooltip: '上传',
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+
+        backgroundColor: Colors.red,
+
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
+    );
   }
 
   Widget header() {
