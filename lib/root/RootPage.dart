@@ -6,8 +6,10 @@ import 'package:shop/root/my/MyPage.dart';
 import 'package:shop/root/vip/VipPage.dart';
 import 'package:shop/utils/AppConfig.dart';
 import 'package:shop/utils/NavigationView.dart';
+import 'package:shop/utils/provider/ViewModelProvider.dart';
 
 import '../utils/AppConfig.dart';
+import 'home/HomeViewModel.dart';
 
 class RootPage extends StatefulWidget {
   int currentIndex;
@@ -23,7 +25,7 @@ class _RootPageState extends State<RootPage>with TickerProviderStateMixin {
   List<StatefulWidget> _pageList;
   int currentIndex = 0;
   final  pages = [
-  HomePage(),
+    ViewModelProvider(viewModel: HomeViewModel(), child: HomePage(),),
 //  HomePage(),
 //  VipPage(),
   MyPage(),

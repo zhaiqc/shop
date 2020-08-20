@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shop/root/home/shop_detail_entity.dart';
 import 'package:shop/utils/AppConfig.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 class DetailPage extends StatefulWidget {
+  ShopDetailEntity  entity;
+
+  DetailPage(this.entity);
+
   @override
   _DetailPageState createState() => _DetailPageState();
 }
@@ -18,9 +23,34 @@ class _DetailPageState extends State<DetailPage> {
 <h5>Heading 5</h5>
 
 ''';
-
+List<Widget> tags =new List();
   @override
   void initState() {
+    widget.entity.data.manystoretaps.forEach((element) {
+        tags.add(      Container(
+          alignment: Alignment.center,
+          child: Text(
+            "${element.name}",
+            textAlign: TextAlign.right,
+            style: TextStyle(
+                color: Colors.red,
+                fontSize:
+                AppConfig.logic_fontSize(
+                    18)),
+          ),
+          decoration: new BoxDecoration(
+            borderRadius: BorderRadius.all(
+                Radius.circular(5.0)),
+            border: new Border.all(
+                width: AppConfig.logic_width(2),
+                color: Colors.red),
+          ),
+          margin: EdgeInsets.all(
+              AppConfig.logic_width(20)),
+          height: AppConfig.logic_width(40),
+          width: AppConfig.logic_width(100),
+        ),);
+    });
     // TODO: implement initState
     super.initState();
   }
@@ -45,7 +75,7 @@ class _DetailPageState extends State<DetailPage> {
               delegate: new SliverChildListDelegate([
                 new Container(
                   child: Text(
-                    "首次特卖！100个币随便刷，无需预约即买即用，全国200+店通用~",
+                    "${widget.entity.data.subtitle}",
                     style: TextStyle(
                       fontSize: AppConfig.logic_fontSize(35),
                       fontWeight: FontWeight.bold,
@@ -69,79 +99,80 @@ class _DetailPageState extends State<DetailPage> {
                                     left: AppConfig.logic_width(20)),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "全国通用",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize:
-                                                    AppConfig.logic_fontSize(
-                                                        18)),
-                                          ),
-                                          decoration: new BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5.0)),
-                                            border: new Border.all(
-                                                width: AppConfig.logic_width(2),
-                                                color: Colors.red),
-                                          ),
-                                          margin: EdgeInsets.all(
-                                              AppConfig.logic_width(20)),
-                                          height: AppConfig.logic_width(40),
-                                          width: AppConfig.logic_width(100),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "项目丰富",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize:
-                                                    AppConfig.logic_fontSize(
-                                                        18)),
-                                          ),
-                                          decoration: new BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5.0)),
-                                            border: new Border.all(
-                                                width: AppConfig.logic_width(2),
-                                                color: Colors.red),
-                                          ),
-                                          margin: EdgeInsets.all(
-                                              AppConfig.logic_width(20)),
-                                          height: AppConfig.logic_width(40),
-                                          width: AppConfig.logic_width(100),
-                                        ),
-                                        Container(
-//                        padding: EdgeInsets.only(left: AppConfig.logic_width(1)),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "全国通用",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize:
-                                                    AppConfig.logic_fontSize(
-                                                        18)),
-                                          ),
-                                          decoration: new BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5.0)),
-                                            border: new Border.all(
-                                                width: AppConfig.logic_width(2),
-                                                color: Colors.red),
-                                          ),
-                                          margin: EdgeInsets.all(
-                                              AppConfig.logic_width(20)),
-                                          height: AppConfig.logic_width(40),
-                                          width: AppConfig.logic_width(100),
-                                        ),
-                                      ],
+                                    Row(children: tags,
+//                                      children: [
+//                                        tags.toList();
+////                                        Container(
+////                                          alignment: Alignment.center,
+////                                          child: Text(
+////                                            "全国通用",
+////                                            textAlign: TextAlign.right,
+////                                            style: TextStyle(
+////                                                color: Colors.red,
+////                                                fontSize:
+////                                                    AppConfig.logic_fontSize(
+////                                                        18)),
+////                                          ),
+////                                          decoration: new BoxDecoration(
+////                                            borderRadius: BorderRadius.all(
+////                                                Radius.circular(5.0)),
+////                                            border: new Border.all(
+////                                                width: AppConfig.logic_width(2),
+////                                                color: Colors.red),
+////                                          ),
+////                                          margin: EdgeInsets.all(
+////                                              AppConfig.logic_width(20)),
+////                                          height: AppConfig.logic_width(40),
+////                                          width: AppConfig.logic_width(100),
+////                                        ),
+////                                        Container(
+////                                          alignment: Alignment.center,
+////                                          child: Text(
+////                                            "项目丰富",
+////                                            textAlign: TextAlign.right,
+////                                            style: TextStyle(
+////                                                color: Colors.red,
+////                                                fontSize:
+////                                                    AppConfig.logic_fontSize(
+////                                                        18)),
+////                                          ),
+////                                          decoration: new BoxDecoration(
+////                                            borderRadius: BorderRadius.all(
+////                                                Radius.circular(5.0)),
+////                                            border: new Border.all(
+////                                                width: AppConfig.logic_width(2),
+////                                                color: Colors.red),
+////                                          ),
+////                                          margin: EdgeInsets.all(
+////                                              AppConfig.logic_width(20)),
+////                                          height: AppConfig.logic_width(40),
+////                                          width: AppConfig.logic_width(100),
+////                                        ),
+////                                        Container(
+//////                        padding: EdgeInsets.only(left: AppConfig.logic_width(1)),
+////                                          alignment: Alignment.center,
+////                                          child: Text(
+////                                            "全国通用",
+////                                            textAlign: TextAlign.right,
+////                                            style: TextStyle(
+////                                                color: Colors.red,
+////                                                fontSize:
+////                                                    AppConfig.logic_fontSize(
+////                                                        18)),
+////                                          ),
+////                                          decoration: new BoxDecoration(
+////                                            borderRadius: BorderRadius.all(
+////                                                Radius.circular(5.0)),
+////                                            border: new Border.all(
+////                                                width: AppConfig.logic_width(2),
+////                                                color: Colors.red),
+////                                          ),
+////                                          margin: EdgeInsets.all(
+////                                              AppConfig.logic_width(20)),
+////                                          height: AppConfig.logic_width(40),
+////                                          width: AppConfig.logic_width(100),
+////                                        ),
+//                                      ],
                                     ),
                                     Container(
                                       alignment: Alignment.centerLeft,
@@ -161,7 +192,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 color: Colors.red),
                                           ),
                                           Text(
-                                            "39.9",
+                                            "${widget.entity.data.price}",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize:
@@ -170,7 +201,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 color: Colors.red),
                                           ),
                                           Text(
-                                            "￥499",
+                                            "￥${widget.entity.data.originalPrice}",
                                             style: TextStyle(
                                                 fontSize:
                                                     AppConfig.logic_width(25),
@@ -254,14 +285,14 @@ class _DetailPageState extends State<DetailPage> {
                                 child: Column(
                                   children: [
                                     Container(
-                                        height: AppConfig.logic_height(150) * 2,
+                                        height: AppConfig.logic_height(100) * ( widget.entity.data.setmeal.length),
                                         alignment: Alignment.centerLeft,
                                         child: ListView.builder(
                                             physics:
                                                 NeverScrollableScrollPhysics(),
-                                            itemCount: 3,
+                                            itemCount: widget.entity.data.setmeal.length,
                                             itemBuilder: ((context, index) {
-                                              return item();
+                                              return item(index);
                                             }))),
                                   ],
                                 ))),
@@ -280,8 +311,12 @@ class _DetailPageState extends State<DetailPage> {
             new SliverList(
               delegate: new SliverChildListDelegate([
                 new Container(
-                  child: Text(
-                      "权益说明\n· 套餐内容：1大1小门票+儿童套餐畅玩不限时（周一至周五可用，节假日不可用）\n· 儿童餐：主食（小馄饨/面条2选1）+卡通包2个+水果1份+南瓜粥1杯\n· 因门店预约火爆，为避免约满状态，请提前一天预约· 每个用户限购2份\n· 额外成人：额外的大人入园需另付50元/人\n· 适用儿童：1-8岁儿童，餐食与游玩票需在游玩当天使用完毕\n· 请勿携带外食进入餐厅，宝宝辅食类除外\n· 本套餐不与店内其他优惠活动同享\n· 3岁以下儿童需穿纸尿裤入场游玩\n· 为保证游乐区环境安全整洁，大人孩子都需要脱鞋穿袜哦，如果忘穿了亦可现场购买\n· 如遇现场客流高峰期，可能需要等位\n· 如部分菜品因时令等不可抗因素导致无法提供，商家会用等价菜品代替，具体请与商家协商\n· 价值仅供参考，实际价格以门店菜单为准"),
+
+                  child:HtmlWidget(
+              widget.entity.data.rightsandinterestscontent,
+              ),
+//                  child: Text(
+//                      "权益说明\n· 套餐内容：1大1小门票+儿童套餐畅玩不限时（周一至周五可用，节假日不可用）\n· 儿童餐：主食（小馄饨/面条2选1）+卡通包2个+水果1份+南瓜粥1杯\n· 因门店预约火爆，为避免约满状态，请提前一天预约· 每个用户限购2份\n· 额外成人：额外的大人入园需另付50元/人\n· 适用儿童：1-8岁儿童，餐食与游玩票需在游玩当天使用完毕\n· 请勿携带外食进入餐厅，宝宝辅食类除外\n· 本套餐不与店内其他优惠活动同享\n· 3岁以下儿童需穿纸尿裤入场游玩\n· 为保证游乐区环境安全整洁，大人孩子都需要脱鞋穿袜哦，如果忘穿了亦可现场购买\n· 如遇现场客流高峰期，可能需要等位\n· 如部分菜品因时令等不可抗因素导致无法提供，商家会用等价菜品代替，具体请与商家协商\n· 价值仅供参考，实际价格以门店菜单为准"),
                   margin: EdgeInsets.all(AppConfig.logic_width(20)),
                 ),
               ]),
@@ -653,7 +688,7 @@ class _DetailPageState extends State<DetailPage> {
               delegate: new SliverChildListDelegate([
                 new Container(
                   child: HtmlWidget(
-                    kHtml,
+                    widget.entity.data.content,
                   ),
                 ),
               ]),
@@ -738,14 +773,14 @@ class _DetailPageState extends State<DetailPage> {
                             color: Colors.red),
                       ),
                       Text(
-                        "39.9",
+                        "${widget.entity.data.price}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: AppConfig.logic_fontSize(45),
                             color: Colors.red),
                       ),
                       Text(
-                        "￥499",
+                        "￥${widget.entity.data.originalPrice}",
                         style: TextStyle(
                             fontSize: AppConfig.logic_width(25),
                             color: Colors.grey,
@@ -819,11 +854,11 @@ class _DetailPageState extends State<DetailPage> {
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return new Image.network(
-                  "http://static.caibeike.com/i/957c846a94ec95d2b0f34d15cbe59851-IcLOqS-iCMwCMbhj2@!sn1080",
+                  widget.entity.data.smallimages.split(",")[index],
                   fit: BoxFit.fill,
                 );
               },
-              itemCount: 3,
+              itemCount:     widget.entity.data.smallimages.split(",").length,
 //        pagination: new SwiperPagination(
 //            builder: DotSwiperPaginationBuilder(
 //                color: Colors.white, activeColor: Colors.red)),
@@ -840,7 +875,7 @@ class _DetailPageState extends State<DetailPage> {
                 child: Container(
                   margin: EdgeInsets.only(left: AppConfig.logic_width(20)),
                   child: Text(
-                    '大玩家【227店通用】',
+                    '${widget.entity.data.title}',
                     style: TextStyle(
                         fontSize: AppConfig.logic_fontSize(35),
                         color: Colors.white),
@@ -854,7 +889,7 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget item() {
+  Widget item(index) {
     return Column(
       children: [
         Container(
@@ -863,7 +898,7 @@ class _DetailPageState extends State<DetailPage> {
           width: double.infinity,
 //                        color: Colors.blue,
           child: Text(
-            "主菜",
+            widget.entity.data.setmeal[index].statusText,
             style: TextStyle(
                 fontSize: AppConfig.logic_width(
                   30,
@@ -879,7 +914,7 @@ class _DetailPageState extends State<DetailPage> {
           child: Row(
             children: [
               Text(
-                "· 新疆大盘鸡（1份）",
+                widget.entity.data.setmeal[index].name,
                 style: TextStyle(
                     fontSize: AppConfig.logic_fontSize(
                       25,
@@ -890,7 +925,7 @@ class _DetailPageState extends State<DetailPage> {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 child: Text(
-                  "￥78",
+                  "￥${widget.entity.data.setmeal[index].price}",
                   style: TextStyle(
                       fontSize: AppConfig.logic_width(
                         25,

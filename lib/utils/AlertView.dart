@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/root/home/shop_detail_entity.dart';
 
 import 'AppConfig.dart';
 
 class AlertView extends StatefulWidget {
  var onTap;
+ ShopDetailEntity entity;
   AlertView({
     Key key,
-    this.onTap
+    this.onTap,
+    this.entity
   }) : super(key: key);
 
   @override
@@ -47,7 +50,7 @@ class _AlertViewState extends State<AlertView> {
                       children: [
                         Expanded(
                           child: Image.network(
-                              "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300"),
+                              widget.entity.data.smallimages.split(",")[0]),
                         ),
                         Expanded(
                             flex: 3,
@@ -59,7 +62,7 @@ class _AlertViewState extends State<AlertView> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        "北疆饭店【6店通用】",
+                                        widget.entity.data.title,
                                         style: TextStyle(
                                             color: Colors.orange,
                                             fontSize:
@@ -71,7 +74,7 @@ class _AlertViewState extends State<AlertView> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        "价值￥197* 2~3人餐",
+                                        "${widget.entity.data.priceTitle}",
                                         style: TextStyle(
                                             fontSize:
                                                 AppConfig.logic_fontSize(25)),
@@ -101,9 +104,9 @@ class _AlertViewState extends State<AlertView> {
                       new SliverList(
                         delegate: new SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
-                            return item();
+                            return item(index);
                           },
-                          childCount: 3,
+                          childCount: widget.entity.data.setmeal.length,
                         ),
                       ),
                     ],
@@ -248,7 +251,7 @@ class _AlertViewState extends State<AlertView> {
     );
   }
 
-  Widget item() {
+  Widget item(index) {
     return Column(
       children: [
         Container(
@@ -257,7 +260,7 @@ class _AlertViewState extends State<AlertView> {
           width: double.infinity,
 //                        color: Colors.blue,
           child: Text(
-            "主菜",
+            "${widget.entity.data.setmeal[index].statusText}",
             style: TextStyle(
                 fontSize: AppConfig.logic_width(
                   30,
@@ -272,7 +275,7 @@ class _AlertViewState extends State<AlertView> {
 //                        color: Colors.blue,
           child:Row(children: [
             Text(
-              "· 新疆大盘鸡（1份）",
+              "${widget.entity.data.setmeal[index].name}",
               style: TextStyle(
                   fontSize: AppConfig.logic_fontSize(
                     25,
@@ -284,7 +287,7 @@ class _AlertViewState extends State<AlertView> {
               margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
 
               child:  Text(
-              "￥78",
+              "￥${widget.entity.data.setmeal[index].price}",
               style: TextStyle(
                   fontSize: AppConfig.logic_width(
                     25,
