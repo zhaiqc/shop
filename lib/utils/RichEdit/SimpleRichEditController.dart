@@ -14,6 +14,8 @@ class SimpleRichEditController extends RichEditController {
   //添加视频方法
   @override
   Future<String> addVideo() async {
+
+
     var file = await FilePicker.getFile(
         allowedExtensions: ['mp4', 'png']);
 
